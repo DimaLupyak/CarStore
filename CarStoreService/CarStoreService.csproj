@@ -68,53 +68,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CarStoreDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-      <LastGenOutput>CarStoreDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CarStoreDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-      <LastGenOutput>CarStoreDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="ServiceProduct.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarStoreDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CarStoreDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CarStoreDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CarStoreDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Product.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductCategory.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductMaterial.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Purchase.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PurchaseState.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ServiceProduct.svc.cs">
       <DependentUpon>ServiceProduct.svc</DependentUpon>
     </Compile>
@@ -125,13 +82,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="CarStoreDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarStoreDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="CarStoreDataModel.edmx.diagram">
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-    </Content>
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -142,6 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarStoreDataBaseEntities\CarStoreDataBaseEntities.csproj">
+      <Project>{6024ce65-4cd4-41c7-a753-4f28d825e2b0}</Project>
+      <Name>CarStoreDataBaseEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
