@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CarStoreService
+namespace CarStoreDataBaseEntities
 {
     using System;
     using System.Data.Entity;

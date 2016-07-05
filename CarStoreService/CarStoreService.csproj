@@ -94,9 +94,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarStoreDataBaseEntities\CarStoreDataBaseEntities.csproj">
-      <Project>{6024ce65-4cd4-41c7-a753-4f28d825e2b0}</Project>
-      <Name>CarStoreDataBaseEntities</Name>
+    <ProjectReference Include="..\CarStoreBusinessLogic\CarStoreBusinessLogic.csproj">
+      <Project>{8afcc2ea-b649-45c3-b976-cc7078aeeec0}</Project>
+      <Name>CarStoreBusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
