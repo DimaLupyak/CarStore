@@ -8,7 +8,7 @@ using System.Data;
 
 namespace CarStoreBusinessLogic
 {
-    class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
     {
         #region Singleton
         protected static ProductRepository instance = null;

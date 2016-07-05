@@ -63,20 +63,21 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ServiceProduct.svc" />
+    <Content Include="ProductService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServiceProduct.svc.cs">
-      <DependentUpon>ServiceProduct.svc</DependentUpon>
+    <Compile Include="ProductService.svc.cs">
+      <DependentUpon>ProductService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IServiceProduct.cs" />
+    <Compile Include="IProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App.Config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -91,6 +92,10 @@
     <ProjectReference Include="..\CarStoreBusinessLogic\CarStoreBusinessLogic.csproj">
       <Project>{8afcc2ea-b649-45c3-b976-cc7078aeeec0}</Project>
       <Name>CarStoreBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarStoreDataBaseEntities\CarStoreDataBaseEntities.csproj">
+      <Project>{6024ce65-4cd4-41c7-a753-4f28d825e2b0}</Project>
+      <Name>CarStoreDataBaseEntities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -48,67 +48,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarStoreDataModel.Context.cs">
-      <DependentUpon>CarStoreDataModel.Context.tt</DependentUpon>
+    <Compile Include="CarScoreDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CarScoreDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarStoreDataModel.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+    <Compile Include="CarScoreDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CarStoreDataModel.Designer.cs">
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
+    <Compile Include="CarScoreDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CarScoreDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductCategory.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductMaterial.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Purchase.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseState.cs">
-      <DependentUpon>CarStoreDataModel.tt</DependentUpon>
+      <DependentUpon>CarScoreDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="CarStoreDataModel.edmx">
+    <EntityDeploy Include="CarScoreDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CarStoreDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CarScoreDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CarStoreDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-      <LastGenOutput>CarStoreDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CarStoreDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-      <LastGenOutput>CarStoreDataModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CarStoreDataModel.edmx.diagram">
-      <DependentUpon>CarStoreDataModel.edmx</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.Config" />
+    <None Include="CarScoreDataModel.edmx.diagram">
+      <DependentUpon>CarScoreDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CarScoreDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarScoreDataModel.edmx</DependentUpon>
+      <LastGenOutput>CarScoreDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CarScoreDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CarScoreDataModel.edmx</DependentUpon>
+      <LastGenOutput>CarScoreDataModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

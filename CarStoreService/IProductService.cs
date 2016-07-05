@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CarStoreDataBaseEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,9 +10,11 @@ using System.Text;
 namespace CarStoreService
 {
     [ServiceContract]
-    public interface IServiceProduct
+    public interface IProductService
     {
         [OperationContract]
-        string GetData(int id);
+        List<Product> GetAllProducts();
+        [OperationContract]
+        Product GetProduct(int id);
     }
 }
