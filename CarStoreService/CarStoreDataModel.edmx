@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductMaterials">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="MaterialID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="ImageGUID" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseStates">
+          <Key>
+            <PropertyRef Name="PurchaseStateID" />
+          </Key>
+          <Property Name="PurchaseStateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_ProductCategories">
+          <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductMaterials">
+          <End Role="ProductMaterials" Type="Self.ProductMaterials" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaterials">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_PurchaseStates">
+          <End Role="PurchaseStates" Type="Self.PurchaseStates" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseStates">
+              <PropertyRef Name="PurchaseStateID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarStoreDBModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductMaterials" EntityType="Self.ProductMaterials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseStates" EntityType="Self.PurchaseStates" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Products_ProductCategories" Association="Self.FK_Products_ProductCategories">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductMaterials" Association="Self.FK_Products_ProductMaterials">
+            <End Role="ProductMaterials" EntitySet="ProductMaterials" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Customers" Association="Self.FK_Purchases_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Products" Association="Self.FK_Purchases_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_PurchaseStates" Association="Self.FK_Purchases_PurchaseStates">
+            <End Role="PurchaseStates" EntitySet="PurchaseStates" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarStoreDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Customers" FromRole="Customers" ToRole="Purchases" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductCategories" FromRole="ProductCategories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductMaterial">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductMaterials" FromRole="ProductMaterials" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="MaterialID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="ImageGUID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Products_ProductCategories" FromRole="Products" ToRole="ProductCategories" />
+          <NavigationProperty Name="ProductMaterial" Relationship="Self.FK_Products_ProductMaterials" FromRole="Products" ToRole="ProductMaterials" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_Products" FromRole="Products" ToRole="Purchases" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Purchases_Customers" FromRole="Purchases" ToRole="Customers" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Purchases_Products" FromRole="Purchases" ToRole="Products" />
+          <NavigationProperty Name="PurchaseState" Relationship="Self.FK_Purchases_PurchaseStates" FromRole="Purchases" ToRole="PurchaseStates" />
+        </EntityType>
+        <EntityType Name="PurchaseState">
+          <Key>
+            <PropertyRef Name="PurchaseStateID" />
+          </Key>
+          <Property Name="PurchaseStateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchases_PurchaseStates" FromRole="PurchaseStates" ToRole="Purchases" />
+        </EntityType>
+        <Association Name="FK_Purchases_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductCategories">
+          <End Role="ProductCategories" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductMaterials">
+          <End Role="ProductMaterials" Type="Self.ProductMaterial" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductMaterials">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchases_PurchaseStates">
+          <End Role="PurchaseStates" Type="Self.PurchaseState" Multiplicity="1" />
+          <End Role="Purchases" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseStates">
+              <PropertyRef Name="PurchaseStateID" />
+            </Principal>
+            <Dependent Role="Purchases">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarStoreDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductMaterials" EntityType="Self.ProductMaterial" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="PurchaseStates" EntityType="Self.PurchaseState" />
+          <AssociationSet Name="FK_Purchases_Customers" Association="Self.FK_Purchases_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductCategories" Association="Self.FK_Products_ProductCategories">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductMaterials" Association="Self.FK_Products_ProductMaterials">
+            <End Role="ProductMaterials" EntitySet="ProductMaterials" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_Products" Association="Self.FK_Purchases_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchases_PurchaseStates" Association="Self.FK_Purchases_PurchaseStates">
+            <End Role="PurchaseStates" EntitySet="PurchaseStates" />
+            <End Role="Purchases" EntitySet="Purchases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarStoreDBModelStoreContainer" CdmEntityContainer="CarStoreDBEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CarStoreDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="CarStoreDBModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductMaterials">
+            <EntityTypeMapping TypeName="CarStoreDBModel.ProductMaterial">
+              <MappingFragment StoreEntitySet="ProductMaterials">
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CarStoreDBModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImageGUID" ColumnName="ImageGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="CarStoreDBModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseStates">
+            <EntityTypeMapping TypeName="CarStoreDBModel.PurchaseState">
+              <MappingFragment StoreEntitySet="PurchaseStates">
+                <ScalarProperty Name="PurchaseStateID" ColumnName="PurchaseStateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
