@@ -44,32 +44,8 @@ textarea {
     display: inline-block;
 }
 
-#challengeImage{
+#productImage{
     width: 80px;
     display: block;
     margin: 0 auto;
 }
-
-/*.form-control{
-    margin: 0px;
-    padding: 0px;
-    height:30px;
-}
-.control-label{
-    height:30px;
-    vertical-align: central;
-    text-align:right;
-}
-
-
-.k-dropdown{
-    width: 100%;
-}
-
-.form-group{
-     padding: 10px;
-}
-
-.col{
-    padding: 0px;
-}*/ 

@@ -1,0 +1,15 @@
+﻿
+@model string
+<div class="editValue k-content demo-section">
+    @(Html.Kendo().Upload()
+        .Name("files")
+        .Multiple(false)
+        .Async(a => a
+            .Save("Save", "Admin")
+            .AutoUpload(true)
+        )
+        .Events(c => c
+            .Success("onSuccess")
+        )
+    )
+</div>

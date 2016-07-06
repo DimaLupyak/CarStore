@@ -1,0 +1,8 @@
+﻿
+@model int?
+
+@(Html.Kendo().DropDownListFor(m => m)
+        .DataValueField("ID")
+        .DataTextField("Name")
+        .BindTo((System.Collections.IEnumerable)ViewData["categories"]).HtmlAttributes(new { style = "width: 70%" })
+)

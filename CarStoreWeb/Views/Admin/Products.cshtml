@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+}
+
+@(Html.Kendo().Grid<CarStoreViewModels.ProductViewModel>()
+                .Name("grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(product => product.Model);
+                    columns.Bound(product => product.Brand);
+                    columns.Bound(product => product.Price);
+                    columns.ForeignKey(product => product.CategoryID,
+                        (System.Collections.IEnumerable)ViewData["categories"], "ID", "Name").Title("Category").Width(150);
+                    columns.ForeignKey(product => product.MaterialID,
+                        (System.Collections.IEnumerable)ViewData["materials"], "ID", "Name").Title("Material").Width(150);
+                    columns.Bound(product => product.ImageGUID).Sortable(false).ClientTemplate(
+                        @" <img src='" + Url.Content("~/Content/Images/") + "#:data.ImageGUID#' id=\"productImage\"/>").Width(100);
+                    columns.Command(command =>
+                    {
+                        command.Edit().UpdateText("Save").HtmlAttributes(new { style = "width: 100px; margin-bottom: 10px" });
+                        command.Destroy().HtmlAttributes(new { style = "width: 100px; margin-bottom: 2px" });
+                    }).Width(120);
+                })
+                .ToolBar(toolbar => toolbar.Create().Text("Add new Product"))
+                .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("Product")
+                    .Window(w =>
+                    {
+                        w.Actions(a => a.Maximize().Close());
+                        w.Title("Product Editor");
+                        w.Resizable(resize =>
+                        {
+                            resize.Enabled(true);
+                            resize.MinWidth(400);
+                        });
+                        w.Draggable(true);
+
+                    }))
+                .Pageable(pager => pager.PageSizes(new[] { 5, 10, 20, 50 }))
+                .Sortable()
+                .HtmlAttributes(new { style = "word-break: break-all; word-wrap: break-word; overflow-wrap: break-word" })
+                .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .PageSize(5)
+                    .Events(events => events.Error("error_handler"))
+                    .Model(model =>
+                    {
+                        model.Id(p => p.ID);
+                        model.Field(p => p.ID).Editable(false);
+                        model.Field(p => p.Category).DefaultValue(
+                            ViewData["defaultCategory"] as CarStoreViewModels.ProductCategoryViewModel);
+                        model.Field(p => p.Material).DefaultValue(
+                            ViewData["defaultMaterial"] as CarStoreViewModels.ProductMaterialViewModel);
+                    })
+                    .Create(update => update.Action("Create", "Admin").Data("additionalDetail"))
+                    .Read(read => read.Action("Read", "Admin"))
+                    .Update(update => update.Action("Update", "Admin").Data("additionalDetail"))
+                    .Destroy(update => update.Action("Destroy", "Admin"))
+                )
+                .ClientDetailTemplateId("detail-template")
+                .Events(events => events.Save("save_handler"))
+)
+
+<script id="detail-template" type="text/x-kendo-template">
+    <div>#: Description #</div>
+</script>
+
+<script>
+    function additionalDetail() {
+        return {
+            filename: window.UploadedFile
+        }
+    }
+</script>
+<script>
+   var UploadedFile;
+    function onSuccess(e) {
+        UploadedFile = e.response.fileName;
+    }
+</script>
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+    function save_handler(e) {
+        e.model.dirty = true;
+    }
+</script>

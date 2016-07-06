@@ -1,0 +1,44 @@
+﻿
+@model CarStoreViewModels.ProductViewModel
+
+<div class="editItem">
+    @Html.LabelFor(model => model.Model, new { @class = "editLabel" })
+    @Html.TextBoxFor(model => model.Model, new { @class = "k-textbox editValue", placeholder = "Enter car model" })
+    @Html.ValidationMessageFor(model => model.Model)
+</div>
+
+<div class="editItem">
+    @Html.LabelFor(model => model.Brand, new { @class = "editLabel" })
+    @Html.TextBoxFor(model => model.Brand, new { @class = "k-textbox editValue", placeholder = "Enter car brand" })
+    @Html.ValidationMessageFor(model => model.Brand)
+</div>
+
+<div class="editItem">
+    @Html.LabelFor(model => model.Price, new { @class = "editLabel" })
+    @Html.TextBoxFor(model => model.Price, new { @class = "k-textbox editValue", placeholder = "Enter car price" })
+    @Html.ValidationMessageFor(model => model.Price)
+</div>
+
+<div class="editItem">
+    @Html.LabelFor(model => model.CategoryID, new { @class = "editLabel" })
+    @Html.EditorFor(model => model.CategoryID)
+    @Html.ValidationMessageFor(model => model.CategoryID)
+</div>
+
+<div class="editItem">
+    @Html.LabelFor(model => model.MaterialID, new { @class = "editLabel" })
+    @Html.EditorFor(model => model.MaterialID)
+    @Html.ValidationMessageFor(model => model.MaterialID)
+</div>
+
+<div class="editItem">
+    @Html.LabelFor(model => model.Description, new { @class = "editLabel" })
+    @Html.TextAreaFor(model => model.Description, new { @class = "k-textbox editValue", placeholder = "Enter car description" })
+    @Html.ValidationMessageFor(model => model.Description)
+</div>
+
+<div class="editItem">
+    @Html.LabelFor(model => model.ImageGUID, new { @class = "editLabel" })
+    @Html.EditorFor(model => model.ImageGUID)
+    @Html.ValidationMessageFor(model => model.ImageGUID)
+</div>

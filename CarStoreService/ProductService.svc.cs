@@ -21,32 +21,30 @@ namespace CarStoreService
 
         public void Create(ProductViewModel item)
         {
-            throw new NotImplementedException();
+            productsRepository.Create(item);
+        }
+        public List<ProductViewModel> Read()
+        {
+            return productsRepository.Read();
+        }
+        public void Update(ProductViewModel item)
+        {
+            productsRepository.Update(item);
         }
 
         public void Destroy(ProductViewModel item)
         {
-            throw new NotImplementedException();
+            productsRepository.Destroy(item);
         }
 
         public List<ProductCategoryViewModel> GetCategories()
         {
-            throw new NotImplementedException();
+            return productsRepository.GetCategories();
         }
 
         public List<ProductMaterialViewModel> GetMaterials()
         {
-            throw new NotImplementedException();
-        }
-
-        public List<ProductViewModel> Read()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ProductViewModel item)
-        {
-            throw new NotImplementedException();
+            return productsRepository.GetMaterials();
         }
     }
 }

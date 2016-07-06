@@ -51,6 +51,7 @@ namespace CarStoreBusinessLogic
                                 {
                                     ID = a.ID,
                                     Model = a.Model,
+                                    Brand = a.Brand,
                                     Price = a.Price,
                                     Description = a.Description,
                                     ImageGUID = a.ImageGUID,
