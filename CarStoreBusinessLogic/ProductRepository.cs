@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarStoreDataBaseEntities;
 using System.Data;
+using CarStoreViewModels;
 
 namespace CarStoreBusinessLogic
 {
@@ -27,55 +25,109 @@ namespace CarStoreBusinessLogic
         protected ProductRepository() { }
         #endregion
         #region IChallengeRepository CRUD Methods
-        public void Create(Product item)
+        public void Create(ProductViewModel item)
         {
             using (CarStoreDBEntities entities = new CarStoreDBEntities())
             {
-                entities.Products.Add(item);
+                var product = new Product();
+                product.Brand = item.Brand;
+                product.Model = item.Model;
+                product.Price = item.Price;
+                product.Description = item.Description;
+                product.ImageGUID = item.ImageGUID;
+                product.CategoryID = item.CategoryID;
+                product.MaterialID = item.MaterialID;
+                entities.Products.Add(product);
+                entities.SaveChanges();
+                item.ID = product.ID;
+            }
+        }
+        public List<ProductViewModel> Read()
+        {
+            using (CarStoreDBEntities entities = new CarStoreDBEntities())
+            {
+                var products = (from a in entities.Products
+                                select new ProductViewModel
+                                {
+                                    ID = a.ID,
+                                    Model = a.Model,
+                                    Price = a.Price,
+                                    Description = a.Description,
+                                    ImageGUID = a.ImageGUID,
+                                    CategoryID = a.CategoryID,
+                                    MaterialID = a.MaterialID,
+                                    Category = new ProductCategoryViewModel()
+                                    {
+                                        ID = a.ProductCategory.CategoryID,
+                                        Name = a.ProductCategory.CategoryName
+                                    },
+                                    Material = new ProductMaterialViewModel()
+                                    {
+                                        ID = a.ProductMaterial.MaterialID,
+                                        Name = a.ProductMaterial.MaterialName
+                                    }
+                                }).ToList();
+                return products;
+            }
+        }
+
+        public void Update(ProductViewModel item)
+        {
+            using (CarStoreDBEntities entities = new CarStoreDBEntities())
+            {
+                var product = new Product();
+                product.ID = item.ID;
+                product.Brand = item.Brand;
+                product.Model = item.Model;
+                product.Price = item.Price;
+                product.Description = item.Description;
+                product.ImageGUID = item.ImageGUID;
+                product.CategoryID = item.CategoryID;
+                product.MaterialID = item.MaterialID;
+                entities.Products.Attach(product);
+                entities.Entry(product).State = EntityState.Modified;
                 entities.SaveChanges();
             }
         }
-        public List<Product> Read()
+
+        public void Destroy(ProductViewModel item)
         {
             using (CarStoreDBEntities entities = new CarStoreDBEntities())
             {
-                return entities.Products.ToList();
-            }
-        }
-        public void Update(Product item)
-        {
-            using (CarStoreDBEntities entities = new CarStoreDBEntities())
-            {
-                entities.Products.Attach(item);
-                entities.Entry(item).State = EntityState.Modified;
-                entities.SaveChanges();
-            }
-        }
-        
-        public void Destroy(Product item)
-        {
-            using (CarStoreDBEntities entities = new CarStoreDBEntities())
-            {
-                entities.Products.Attach(item);
-                entities.Products.Remove(item);
+                var product = new Product();
+                product.ID = item.ID;
+                entities.Products.Attach(product);
+                entities.Products.Remove(product);
                 entities.SaveChanges();
             }
         }
         #endregion
 
-        public List<ProductCategory> GetCategories()
+        public List<ProductCategoryViewModel> GetCategories()
         {
             using (CarStoreDBEntities entities = new CarStoreDBEntities())
             {
-                return entities.ProductCategories.ToList();
+                var categories = (from a in entities.ProductCategories
+                                  select new ProductCategoryViewModel
+                                  {
+                                      ID = a.CategoryID,
+                                      Name = a.CategoryName,
+                                  }).ToList();
+                return categories;
             }
         }
-        public List<ProductMaterial> GetMaterials()
+        public List<ProductMaterialViewModel> GetMaterials()
         {
             using (CarStoreDBEntities entities = new CarStoreDBEntities())
             {
-                return entities.ProductMaterials.ToList();
+                var materials = (from a in entities.ProductMaterials
+                                  select new ProductMaterialViewModel
+                                  {
+                                      ID = a.MaterialID,
+                                      Name = a.MaterialName,
+                                  }).ToList();
+                return materials;
             }
-        } 
+        }
     }
 }

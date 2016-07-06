@@ -1,11 +1,6 @@
-﻿using CarStoreDataBaseEntities;
-using System;
+﻿using CarStoreViewModels;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace CarStoreService
 {
@@ -13,8 +8,21 @@ namespace CarStoreService
     public interface IProductService
     {
         [OperationContract]
-        List<Product> GetAllProducts();
+        void Create(ProductViewModel item);
+
         [OperationContract]
-        Product GetProduct(int id);
+        List<ProductViewModel> Read();
+
+        [OperationContract]
+        void Update(ProductViewModel item);
+
+        [OperationContract]
+        void Destroy(ProductViewModel item);
+
+        [OperationContract]
+        List<ProductCategoryViewModel> GetCategories();
+
+        [OperationContract]
+        List<ProductMaterialViewModel> GetMaterials();
     }
 }

@@ -16,8 +16,7 @@ namespace CarStoreWeb.Controllers
 
         public ActionResult About()
         {
-            ProductService service = new ProductService();
-            ViewBag.Message = service.GetProduct(2).Model;
+            ViewBag.Message = "HELLO";
             return View();
         }
 

@@ -97,6 +97,10 @@
       <Project>{6024ce65-4cd4-41c7-a753-4f28d825e2b0}</Project>
       <Name>CarStoreDataBaseEntities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarStoreViewModels\CarStoreViewModels.csproj">
+      <Project>{525b263f-afd0-4173-bf2f-b8e9d50e15b6}</Project>
+      <Name>CarStoreViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

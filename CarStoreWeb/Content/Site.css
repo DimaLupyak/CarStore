@@ -3,22 +3,73 @@
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.k-textbox{
+    width: 100%;
 }
+
+.k-window {    
+    width: 70%;
+}
+.k-edit-form-container{
+    width: auto;
+    height: auto; 
+}
+
+textarea { 
+    resize: vertical;
+    height: auto; 
+}
+.editItem{
+    width: 100%;
+    height: auto; 
+    margin-bottom: 10px;
+}
+.editLabel{
+    width: 15%;
+    text-align: right;
+    vertical-align:central;
+    margin-right:10px;
+}
+.editValue{
+    width: 70%;
+    display: inline-block;
+}
+
+#challengeImage{
+    width: 80px;
+    display: block;
+    margin: 0 auto;
+}
+
+/*.form-control{
+    margin: 0px;
+    padding: 0px;
+    height:30px;
+}
+.control-label{
+    height:30px;
+    vertical-align: central;
+    text-align:right;
+}
+
+
+.k-dropdown{
+    width: 100%;
+}
+
+.form-group{
+     padding: 10px;
+}
+
+.col{
+    padding: 0px;
+}*/ 
