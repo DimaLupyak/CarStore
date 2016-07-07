@@ -1,9 +1,16 @@
 ﻿@model CarStoreViewModels.ProductViewModel
 
 <div class="well">
+    @if (Model.ImageGUID != null)
+    {
+        <div class="pull-left" style="margin-right: 10px">
+            <img class="img-thumbnail" src="@String.Format("{0}{1}", @Url.Content("~/Content/Images/"), @Model.ImageGUID)" width="150" height="150"/>            
+        </div>
+    }
     <h3>
         <strong>@Model.Brand</strong>
         <span class="pull-right label label-primary">@Model.Price.ToString("#$")</span>
     </h3>
-    <span class="lead">@Model.Material.Name</span>
+    <p>Scale: @Model.Material.Name</p>
+    <p class="lead">@Model.Model </p>
 </div>
