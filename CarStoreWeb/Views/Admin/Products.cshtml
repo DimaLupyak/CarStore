@@ -62,7 +62,26 @@
 )
 
 <script id="detail-template" type="text/x-kendo-template">
-    <div>#: Description #</div>
+    @(Html.Kendo().TabStrip()
+            .Name("tabStrip_#=ID#")
+            .SelectedIndex(0)
+            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
+            .Items(items =>
+            {
+                items.Add().Text("Description").Content(
+                    "<div class='product-details'>" +
+                        "<p>#= Description # </p>" +                        
+                    "</div>"
+                );
+                items.Add().Text("Image").Content(
+                    "<div class='product-details'>" +
+                        "<ul>" +
+                            "<img src='" + Url.Content("~/Content/Images/") + "#:data.ImageGUID#' id=\"descriptionImage\"/>" +
+                        "</ul>" +
+                    "</div>"
+                );
+            })
+            .ToClientTemplate())
 </script>
 
 <script>
@@ -73,7 +92,7 @@
     }
 </script>
 <script>
-   var UploadedFile;
+    var UploadedFile;
     function onSuccess(e) {
         UploadedFile = e.response.fileName;
     }

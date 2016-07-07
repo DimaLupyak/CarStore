@@ -1,6 +1,12 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 20px;    
+}
+
+p {
+    word-break: keep-all;
+    white-space: pre-wrap;
+    line-height: 1.5;
 }
 
 .body-content {
@@ -46,6 +52,11 @@ textarea {
 
 #productImage{
     width: 80px;
+    display: block;
+    margin: 0 auto;
+}
+#descriptionImage{
+    width: 50%;
     display: block;
     margin: 0 auto;
 }
