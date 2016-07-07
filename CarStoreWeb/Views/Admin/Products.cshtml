@@ -11,9 +11,9 @@
                     columns.Bound(product => product.Brand);
                     columns.Bound(product => product.Price);
                     columns.ForeignKey(product => product.CategoryID,
-                        (System.Collections.IEnumerable)ViewData["categories"], "ID", "Name").Title("Category").Width(150);
+                        (System.Collections.IEnumerable)ViewData["categories"], "ID", "Name").Title("Category");
                     columns.ForeignKey(product => product.MaterialID,
-                        (System.Collections.IEnumerable)ViewData["materials"], "ID", "Name").Title("Material").Width(150);
+                        (System.Collections.IEnumerable)ViewData["materials"], "ID", "Name").Title("Scale");
                     columns.Bound(product => product.ImageGUID).Sortable(false).ClientTemplate(
                         @" <img src='" + Url.Content("~/Content/Images/") + "#:data.ImageGUID#' id=\"productImage\"/>").Width(100);
                     columns.Command(command =>

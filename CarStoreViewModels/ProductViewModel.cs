@@ -22,11 +22,11 @@ namespace CarStoreViewModels
         [Display(Name = "Category")]
         [UIHint("Category")]
         public int CategoryID { get; set; }
-
+        
         public ProductMaterialViewModel Material { get; set; }
 
         [Required]
-        [Display(Name = "Material")]
+        [Display(Name = "Scale")]
         [UIHint("Material")]
         public int MaterialID { get; set; }
 

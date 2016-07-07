@@ -11,6 +11,7 @@ using System.IO;
 
 namespace CarStoreWeb.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         IProductService productService;
