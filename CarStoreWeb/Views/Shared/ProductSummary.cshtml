@@ -11,6 +11,14 @@
         <strong>@Model.Brand</strong>
         <span class="pull-right label label-primary">@Model.Price.ToString("#$")</span>
     </h3>
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        <div class="pull-right">
+            @Html.Hidden("productId", @Model.ID)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Add to cart" />
+        </div>
+    }
     <p>Scale: @Model.Material.Name</p>
     <p class="lead">@Model.Model </p>
 </div>

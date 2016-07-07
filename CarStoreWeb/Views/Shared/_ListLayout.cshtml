@@ -41,30 +41,20 @@
 
                 </ul>
                 @Html.Action("Summary", "Cart")
+            </div>            
+        </div>
+    </div>
+    <div class="container" style="margin-top:10px;">
+        <div class="row panel">
+            <div id="categories" class="col-xs-3">
+                @Html.Action("Menu", "Nav")
+            </div>
+            <div class="col-xs-8">
+                @RenderBody()
             </div>
         </div>
     </div>
-    <div class="container">
-        @* Page Body *@
-        <div class="page-body">
-            <div class="row">
-                <div class="col-xs-12">
-                    @RenderBody()
-                </div>
-            </div>
-        </div>
-        @* Page Footer *@
-        <footer>
-            <div class="row">
-                <div class="col-xs-12">
-                    <hr />
-                    <p>@DateTime.Now.Year - Car Store - Admin panel</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

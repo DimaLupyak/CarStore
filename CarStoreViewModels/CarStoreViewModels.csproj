@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cart.cs" />
+    <Compile Include="CartIndexViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="ProductCategoryViewModel.cs" />
     <Compile Include="ProductMaterialViewModel.cs" />

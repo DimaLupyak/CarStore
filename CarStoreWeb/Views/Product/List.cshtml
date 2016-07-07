@@ -2,6 +2,7 @@
 @model ProductListViewModel
 @{
     ViewBag.Title = "Products list";
+    Layout = "~/Views/Shared/_ListLayout.cshtml";
 }
 
 @foreach (var p in @Model.Products)
