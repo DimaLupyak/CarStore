@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Store</title>
+    <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/kendo/2015.3.1111/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
 
 
@@ -19,7 +19,6 @@
     <script src="@Url.Content("~/Scripts/kendo/2015.3.1111/jszip.min.js")"></script>
     <script src="@Url.Content("~/Scripts/kendo/2015.3.1111/kendo.all.min.js")"></script>
     <script src="@Url.Content("~/Scripts/kendo/2015.3.1111/kendo.aspnetmvc.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
     @Styles.Render("~/Content/css")
 </head>
 <body>
@@ -36,8 +35,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("List", "List", "Product")</li>
+                    <li>@Html.ActionLink("Gallery", "Gallery", "Product")</li>
                     <li>@Html.ActionLink("Admin panel", "Products", "Admin")</li>
 
                 </ul>
