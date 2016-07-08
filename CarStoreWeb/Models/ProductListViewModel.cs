@@ -11,5 +11,6 @@ namespace CarStoreWeb.Models
         public IEnumerable<ProductViewModel> Products { get; set; }
         public PagingInfo PagingInfo { get; set; }
         public string CurrentCategory { get; set; }
+        public string CurrentMaterial { get; set; }
     }
 }

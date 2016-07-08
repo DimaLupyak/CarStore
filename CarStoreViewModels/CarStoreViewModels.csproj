@@ -44,6 +44,7 @@
     <Compile Include="Cart.cs" />
     <Compile Include="CartIndexViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
+    <Compile Include="MenuViewModel.cs" />
     <Compile Include="ProductCategoryViewModel.cs" />
     <Compile Include="ProductMaterialViewModel.cs" />
     <Compile Include="ProductViewModel.cs" />

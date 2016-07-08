@@ -35,12 +35,12 @@ namespace CarStoreWeb.Controllers
             return Json(productService.Read().ToDataSourceResult(request));
         }
 
-        public ActionResult List(string category, int page = 1)
+        public ActionResult List(string category, string material, int page = 1)
         {
             ProductListViewModel model = new ProductListViewModel
             {
                 Products = productService.Read()
-                    .Where(product => category == null || product.Category.Name == category)
+                    .Where(product => ((product.Category.Name == category || category == null) && (product.Material.Name == material || material == null)))
                     .OrderBy(product => product.ID)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize),
@@ -48,11 +48,10 @@ namespace CarStoreWeb.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = category == null ?
-                        productService.Read().Count() :
-                        productService.Read().Where(p => p.Category.Name == category).Count()
+                    TotalItems = productService.Read().Where(p => ((p.Category.Name == category || category == null) && (p.Material.Name == material || material == null))).Count()
                 },
-                CurrentCategory = category
+                CurrentCategory = category,
+                CurrentMaterial = material
             };
             return View(model);
         }
