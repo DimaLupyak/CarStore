@@ -17,6 +17,15 @@ namespace CarStoreWeb
                 "",
                 new
                 {
+                    controller = "Home",
+                    action = "Index"
+                }
+            );
+
+            routes.MapRoute(null,
+                "Product/List/",
+                new
+                {
                     controller = "Product",
                     action = "List",
                     category = (string)null,
@@ -26,18 +35,18 @@ namespace CarStoreWeb
 
             routes.MapRoute(
                 name: null,
-                url: "Page{page}",
+                url: "Product/List/Page{page}",
                 defaults: new { controller = "Product", action = "List", category = (string)null },
                 constraints: new { page = @"\d+" }
             );
 
             routes.MapRoute(null,
-                "{category}",
+                "Product/List/{category}",
                 new { controller = "Product", action = "List", page = 1 }
             );
 
             routes.MapRoute(null,
-                "{category}/Page{page}",
+                "Product/List/{category}/Page{page}",
                 new { controller = "Product", action = "List" },
                 new { page = @"\d+" }
             );
