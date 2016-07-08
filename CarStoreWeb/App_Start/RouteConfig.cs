@@ -23,6 +23,15 @@ namespace CarStoreWeb
             );
 
             routes.MapRoute(null,
+                "Admin",
+                new
+                {
+                    controller = "Admin",
+                    action = "Products"
+                }
+            );
+
+            routes.MapRoute(null,
                 "Product/List/",
                 new
                 {
