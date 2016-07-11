@@ -1,0 +1,72 @@
+﻿@model CarStoreViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Products details";
+    Layout = "~/Views/Shared/_ListLayout.cshtml";
+}
+<div>
+    <h4>Product details</h4>
+    <hr />
+    @if (Model.ImageGUID != null)
+    {
+        <div class="pull-left" style="margin-right: 10px">
+            <img class="img-thumbnail" src="@String.Format("{0}{1}", @Url.Content("~/Content/Images/"), @Model.ImageGUID)" width="200" height="200" />
+        </div>
+    }
+    <h3>
+        <strong>@Model.Brand</strong>
+        <span class="pull-right label label-primary">@Model.Price.ToString("#$")</span>
+    </h3>
+    <div class="pull-left">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Model)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Model)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd >
+                <div class='product-details'>
+                    <p>@Model.Description</p>                    
+                </div>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MaterialID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Material.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+        </dl>
+    </div>
+    @using (Html.BeginForm("AddToCart", "Cart"))
+    {
+        <div class="pull-right">
+            @Html.Hidden("productId", @Model.ID)
+            <input type="submit" class="btn btn-success" value="Add to cart" />
+        </div>
+    }
+</div>

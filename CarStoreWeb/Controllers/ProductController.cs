@@ -1,4 +1,5 @@
 ﻿using CarStoreService;
+using CarStoreViewModels;
 using CarStoreWeb.Models;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -54,6 +55,12 @@ namespace CarStoreWeb.Controllers
                 CurrentMaterial = material
             };
             return View(model);
+        }
+
+        public ActionResult Details(int productId)
+        {
+            ProductViewModel product = productService.Read().Where(p => p.ID == productId).FirstOrDefault();            
+            return View(product);
         }
     }
 }
