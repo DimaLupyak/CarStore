@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elmah">
+      <HintPath>..\lib\ELMAH-1.2-sp2-bin-core\Elmah.dll</HintPath>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\lib\KENDOUIMVC\2015.3.1111.545.Trial\Kendo.Mvc.dll</HintPath>
     </Reference>
@@ -67,6 +70,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -159,6 +164,11 @@
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CarStoreService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -508,7 +518,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App.Config" />
     <Content Include="Content\kendo\2015.3.1111\fonts\DejaVu\DejaVuSans-Bold.ttf" />
     <Content Include="Content\kendo\2015.3.1111\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
     <Content Include="Content\kendo\2015.3.1111\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
@@ -527,6 +536,9 @@
     <Content Include="Content\kendo\2015.3.1111\fonts\glyphs\KendoUIGlyphs.woff" />
     <Content Include="Content\kendo\2015.3.1111\images\kendoui.ttf" />
     <Content Include="Content\kendo\2015.3.1111\images\kendoui.woff" />
+    <Content Include="Properties\DataSources\CarStoreViewModels.ProductCategoryViewModel.datasource" />
+    <Content Include="Properties\DataSources\CarStoreViewModels.ProductMaterialViewModel.datasource" />
+    <Content Include="Properties\DataSources\CarStoreViewModels.ProductViewModel.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -672,6 +684,13 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\CarStoreService\ProductService.disco" />
+    <None Include="Service References\CarStoreService\configuration91.svcinfo" />
+    <None Include="Service References\CarStoreService\configuration.svcinfo" />
+    <None Include="Service References\CarStoreService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -826,6 +845,16 @@
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <None Include="Service References\CarStoreService\ProductService.wsdl" />
+    <None Include="Service References\CarStoreService\ProductService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CarStoreService\ProductService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CarStoreService\ProductService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -847,6 +876,12 @@
       <Project>{525b263f-afd0-4173-bf2f-b8e9d50e15b6}</Project>
       <Name>CarStoreViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CarStoreService\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

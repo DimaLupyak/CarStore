@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CarStoreViewModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CarStoreViewModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ProductViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Brand" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:ProductCategoryViewModel" />
+      <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageGUID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Material" nillable="true" type="tns:ProductMaterialViewModel" />
+      <xs:element minOccurs="0" name="MaterialID" type="xs:int" />
+      <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductViewModel" nillable="true" type="tns:ProductViewModel" />
+  <xs:complexType name="ProductCategoryViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductCategoryViewModel" nillable="true" type="tns:ProductCategoryViewModel" />
+  <xs:complexType name="ProductMaterialViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductMaterialViewModel" nillable="true" type="tns:ProductMaterialViewModel" />
+  <xs:complexType name="ArrayOfProductViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductViewModel" nillable="true" type="tns:ProductViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductViewModel" nillable="true" type="tns:ArrayOfProductViewModel" />
+  <xs:complexType name="ArrayOfProductCategoryViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductCategoryViewModel" nillable="true" type="tns:ProductCategoryViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductCategoryViewModel" nillable="true" type="tns:ArrayOfProductCategoryViewModel" />
+  <xs:complexType name="ArrayOfProductMaterialViewModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductMaterialViewModel" nillable="true" type="tns:ProductMaterialViewModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductMaterialViewModel" nillable="true" type="tns:ArrayOfProductMaterialViewModel" />
+</xs:schema>
