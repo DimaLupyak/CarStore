@@ -1,0 +1,77 @@
+﻿@model CarStoreViewModels.MenuViewModel
+<div class="list-group">
+    @Html.RouteLink("All products", new
+{
+    controller = "Product",
+    action = "List",
+    page = 1
+}, new
+{
+    @class = "btn btn-block list-group-item"
+                + (ViewBag.SelectedCategory == null && ViewBag.SelectedMaterial == null ? " active" : "")
+})
+</div>
+
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div  style="padding:0px;">
+            <h4 class="panel-title" >
+                <button data-toggle="collapse" data-target="#collapse1" class="btn btn-block btn-default">Categories</button>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="list-group">
+                    @foreach (var link in Model.Categories)
+                    {
+                        @Html.RouteLink(link, new
+                   {
+                       controller = "Product",
+                       action = "List",
+                       category = link,
+                       material = ViewBag.SelectedMaterial,
+                       page = 1
+                   }, new
+                   {
+                       @class = "btn btn-block list-group-item "
+            + (link == ViewBag.SelectedCategory ? " active" : "")
+                   })
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel-group">
+    <div class="panel panel-default" >
+        <div style="padding:0px;">
+            <h4 class="panel-title">
+                <button data-toggle="collapse" data-target="#collapse2" class="btn btn-block btn-default">Scales:</button>
+            </h4>
+        </div>
+        <div id="collapse2" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="list-group">
+                    @foreach (var link in Model.Materials)
+                    {
+                        @Html.RouteLink(link, new
+                   {
+                       controller = "Product",
+                       action = "List",
+                       category = ViewBag.SelectedCategory,
+                       material = link,
+                       page = 1
+                   }, new
+                   {
+                       @class = "btn btn-block list-group-item"
+            + (link == ViewBag.SelectedMaterial ? " active" : "")
+                   })
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
